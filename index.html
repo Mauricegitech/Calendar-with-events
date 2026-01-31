@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Calendar with Events</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"/>
+</head>
+<body>
+  <div class="card" role="application" aria-label="Calendar">
+    <div class="calendar-toolbar">
+      <button class="month-btn prev" aria-label="Previous month"><i class="fas fa-chevron-left"></i></button>
+      <div class="current-month" aria-live="polite"></div>
+      <button class="month-btn next" aria-label="Next month"><i class="fas fa-chevron-right"></i></button>
+    </div>
+
+    <div class="calendar">
+      <div class="weekdays" aria-hidden="true">
+        <div class="weekday-name">Su</div>
+        <div class="weekday-name">Mo</div>
+        <div class="weekday-name">Tu</div>
+        <div class="weekday-name">We</div>
+        <div class="weekday-name">Th</div>
+        <div class="weekday-name">Fr</div>
+        <div class="weekday-name">Sa</div>
+      </div>
+      <div class="calendar-days" role="grid" aria-label="Calendar days"></div>
+    </div>
+
+    <div style="display:flex;justify-content:center;padding:10px 0;">
+      <button id="openAddEvent" class="btn">Add Event</button>
+    </div>
+
+    <div class="goto-buttons">
+      <button type="button" class="btn prev-year" aria-label="Previous year">Prev Year</button>
+      <button type="button" class="btn today" aria-label="Today">Today</button>
+      <button type="button" class="btn next-year" aria-label="Next year">Next Year</button>
+    </div>
+  </div>
+
+  <!-- Modal for adding/editing events and viewing day events -->
+  <div id="modalBackdrop" class="modal-backdrop" aria-hidden="true">
+    <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+      <h4 id="modalTitle">Add Event</h4>
+
+      <form id="eventForm">
+        <div class="field">
+          <label>Date</label>
+          <input type="date" id="eventDate" required />
+        </div>
+
+        <div class="field">
+          <label>Title</label>
+          <input type="text" id="eventTitle" required />
+        </div>
+
+        <div class="modal-actions">
+          <button type="button" id="cancelEvent" class="btn">Cancel</button>
+          <button type="submit" class="btn">Save</button>
+        </div>
+      </form>
+
+      <div id="dayEventsContainer" style="display:none;">
+        <h4 id="dayLabel">Events</h4>
+        <div class="event-list" id="eventList"></div>
+        <div style="display:flex;justify-content:flex-end;margin-top:8px;">
+          <button id="closeDayEvents" class="btn">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>
+
